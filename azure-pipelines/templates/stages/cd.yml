@@ -9,6 +9,11 @@ jobs:
       DOCKERHUB_REPO: 'jessi93/api-rest-springboot'
 
     steps:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifact: 'drop'
+          path: '$(Pipeline.Workspace)/drop'
+
       - task: Docker@2
         displayName: 'Build & Push'
         inputs:

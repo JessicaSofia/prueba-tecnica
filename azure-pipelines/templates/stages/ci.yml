@@ -40,4 +40,9 @@ jobs:
       # - task: SonarQubePublish@7
       #   inputs:
       #     pollingTimeoutSec: '300'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: 'build/libs'
+          ArtifactName: 'drop'  # nombre del artefacto
+          publishLocation: 'pipeline'
 
