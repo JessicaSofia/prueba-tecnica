@@ -28,9 +28,9 @@ steps:
   displayName: 'Compilar y probar con Gradle'
 
 - script: |
-    ls -l build/libs
-    ls -l .
-  displayName: 'Verificar existencia del jar'
+    cp build/libs/*.jar app.jar
+  displayName: 'Copiar JAR al contexto Docker'
+
 
 - task: Docker@2
   displayName: 'Build Docker image'
