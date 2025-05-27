@@ -27,10 +27,6 @@ steps:
     ./gradlew clean build test
   displayName: 'Compilar y probar con Gradle'
 
-- script: |
-    cp build/libs/*.jar app.jar
-  displayName: 'Copiar JAR al contexto Docker'
-
 
 - task: Docker@2
   displayName: 'Build Docker image'
