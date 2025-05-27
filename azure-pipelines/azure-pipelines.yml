@@ -1,0 +1,15 @@
+trigger:
+  - main
+
+stages:
+  - stage: CI
+    displayName: "Integración Continua"
+    jobs:
+      - template: templates/stages/ci.yml
+
+  - stage: CD
+    displayName: "Entrega Continua"
+    dependsOn: CI
+    condition: succeeded()
+    jobs:
+      - template: templates/stages/cd.yml
