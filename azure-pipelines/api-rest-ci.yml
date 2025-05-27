@@ -25,6 +25,7 @@ steps:
 - script: |
     chmod +x ./gradlew
     ./gradlew clean build test
+    cp build/libs/*.jar app.jar
   displayName: 'Compilar y probar con Gradle'
 
 - task: Docker@2
