@@ -1,0 +1,33 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  IMAGE_NAME: 'api-rest-springboot'
+  DOCKERHUB_REPO: 'jessi93/api-rest-springboot'
+
+steps:
+- task: Cache@2
+  inputs:
+    key: 'gradle | "$(Agent.OS)" | build.gradle'
+    path: $(Pipeline.Workspace)/.gradle
+    restoreKeys: |
+      gradle | "$(Agent.OS)"
+
+- script: |
+    chmod +x ./gradlew
+    ./gradlew clean build test
+  displayName: 'Compilar y probar con Gradle'
+
+- task: Docker@2
+  displayName: '🐳 Build Docker image'
+  inputs:
+    containerRegistry: 'dockerHub'
+    repository: '$(DOCKERHUB_REPO)'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      latest
+      $(Build.BuildId)
