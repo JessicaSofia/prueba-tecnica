@@ -15,31 +15,31 @@ jobs:
           jdkArchitectureOption: 'x64' 
           jdkSourceOption: 'PreInstalled'
 
-      # - task: SonarQubePrepare@7
-      #   inputs:
-      #     SonarQube: 'sonarq_Servcice'
-      #     scannerMode: 'other'
+      - task: SonarQubePrepare@7
+        inputs:
+          SonarQube: 'sonarq_Servcice'
+          scannerMode: 'other'
 
-      # - task: Cache@2
-      #   inputs:
-      #     key: 'gradle | "$(Agent.OS)" | build.gradle'
-      #     path: ~/.gradle
-      #     restoreKeys: |
-      #       gradle | "$(Agent.OS)"
+      - task: Cache@2
+        inputs:
+          key: 'gradle | "$(Agent.OS)" | build.gradle'
+          path: ~/.gradle
+          restoreKeys: |
+            gradle | "$(Agent.OS)"
 
       - script: |
           chmod +x ./gradlew
           ./gradlew clean build test
         displayName: 'Compilar y probar con Gradle'
 
-      # - task: SonarQubeAnalyze@7
-      #   inputs:
-      #     jdkversion: 'JAVA_HOME_17_X64'
+      - task: SonarQubeAnalyze@7
+        inputs:
+          jdkversion: 'JAVA_HOME_17_X64'
 
      
-      # - task: SonarQubePublish@7
-      #   inputs:
-      #     pollingTimeoutSec: '300'
+      - task: SonarQubePublish@7
+        inputs:
+          pollingTimeoutSec: '300'
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: 'build/libs'
