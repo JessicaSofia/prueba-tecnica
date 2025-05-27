@@ -1,6 +1,6 @@
 jobs:
   - job: BuildAndAnalyze
-    displayName: "🏗️ Build + Análisis Sonar"
+    displayName: " Build + Análisis Sonar"
     pool:
       vmImage: 'ubuntu-latest'
 
@@ -14,10 +14,10 @@ jobs:
           versionSpec: '17'
           jdkArchitectureOption: 'x64'
 
-      - task: SonarQubePrepare@7
-        inputs:
-          SonarQube: 'sonarq_Servcice'
-          scannerMode: 'other'
+      # - task: SonarQubePrepare@7
+      #   inputs:
+      #     SonarQube: 'sonarq_Servcice'
+      #     scannerMode: 'other'
 
       - script: |
           chmod +x ./gradlew
@@ -25,12 +25,12 @@ jobs:
           cp build/libs/*.jar app.jar
         displayName: ' Compilar y testear'
 
-      - task: SonarQubeAnalyze@7
-        inputs:
-          jdkversion: 'JAVA_HOME_17_X64'
+      # - task: SonarQubeAnalyze@7
+      #   inputs:
+      #     jdkversion: 'JAVA_HOME_17_X64'
 
      
-      - task: SonarQubePublish@7
-        inputs:
-          pollingTimeoutSec: '300'
+      # - task: SonarQubePublish@7
+      #   inputs:
+      #     pollingTimeoutSec: '300'
 
