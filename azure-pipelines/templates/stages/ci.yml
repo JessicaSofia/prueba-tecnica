@@ -13,6 +13,7 @@ jobs:
         inputs:
           versionSpec: '17'
           jdkArchitectureOption: 'x64'
+          jdkSourceOption: 'PreInstalled'
 
       # - task: SonarQubePrepare@7
       #   inputs:
