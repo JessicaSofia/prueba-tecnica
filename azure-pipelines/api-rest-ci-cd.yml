@@ -15,12 +15,12 @@ steps:
     versionSpec: '17'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
-- task: Cache@2
-  inputs:
-    key: 'gradle | "$(Agent.OS)" | build.gradle'
-    path: ~/.gradle
-    restoreKeys: |
-      gradle | "$(Agent.OS)"
+# - task: Cache@2
+#   inputs:
+#     key: 'gradle | "$(Agent.OS)" | build.gradle'
+#     path: ~/.gradle
+#     restoreKeys: |
+#       gradle | "$(Agent.OS)"
 
 - script: |
     chmod +x ./gradlew
